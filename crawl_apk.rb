@@ -41,7 +41,6 @@ module Apk
         while page
           pageno += 1
           warn "page no: #{pageno}"
-          page.at
           (page / @options[:xpath][:apks]).each do |apk|
             apk_name     = (apk % @apk[:name])&.text
             apk_url      = (apk % @apk[:url])&.value
