@@ -8,3 +8,8 @@ gems:
 * nokogiri
 * spreadsheet
 * byebug(only for debug, optional)
+
+## Usage
+    ruby crawl_apk.rb
+    
+will output an excel format .csv file & a plain text .log file which field delimited by tab.
