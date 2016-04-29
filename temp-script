@@ -1,0 +1,15 @@
+2.3.0 :001 > require 'curb'
+ => true 
+2.3.0 :002 > easy = Curl::Easy.new
+ => #<Curl::Easy> 
+2.3.0 :003 > easy.url = 'http://dl.coolapkmarket.com/down/apk_file/2016/0420/com.obviousengine.seene.android.core-1.3.5-13500.apk?_upt=316f47191461828127&md5=4bcbc4c86ee106abae7f04ab25ecae3a'
+ => "http://dl.coolapkmarket.com/down/apk_file/2016/0420/com.obviousengine.seene.android.core-1.3.5-13500.apk?_upt=316f47191461828127&md5=4bcbc4c86ee106abae7f04ab25ecae3a" 
+2.3.0 :004 > filename='xyz.apk'
+2.3.0 :011 > easy.url = 'http://dl.coolapkmarket.com/down/apk_file/2016/0420/com.obviousengine.seene.android.core-1.3.5-13500.apk?_upt=47743c6a1461829915&md5=4bcbc4c86ee106abae7f04ab25ecae3a'
+ => "http://dl.coolapkmarket.com/down/apk_file/2016/0420/com.obviousengine.seene.android.core-1.3.5-13500.apk?_upt=47743c6a1461829915&md5=4bcbc4c86ee106abae7f04ab25ecae3a" 
+2.3.0 :012 > File.open(filename, 'wb') do |f|
+2.3.0 :013 >     easy.on_progress {|dl_total, dl_now, ul_total, ul_now| print "="; true }
+2.3.0 :014?>   easy.on_body {|data| f << data; data.size }
+2.3.0 :015?>   easy.perform
+2.3.0 :016?>   puts "=> '#{filename}'"
+2.3.0 :017?>   end
