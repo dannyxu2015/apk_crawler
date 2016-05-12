@@ -1,0 +1,5 @@
+*.csv
+*.log
+*.apk
+.idea/
+/cool_apks.txt

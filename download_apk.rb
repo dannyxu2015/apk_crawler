@@ -1,21 +1,17 @@
 require 'curb'
+require './task.rb'
 
-if ARGV.length != 2
-  puts 'Usage: ruby download_apk.rb apk_url apk_name'
-  return
+tasks_file = Crawl::CoolApk::TaskFile.new("r+") rescue nil
+if tasks_file.nil?
+  puts 'Please generate task file cool_apks.txt first!'
+  return 1
 end
-easy = Curl::Easy.new
-easy.url = ARGV[0]
-apk_name = ARGV[1]
-puts "downloading #{apk_name}"
-begin
-  File.open(apk_name, 'wb') do |f|
-    easy.on_progress {|dl_total, dl_now, ul_total, ul_now| print "="; true }
-    easy.on_body {|data| f << data; data.size }
-    easy.perform
-    puts "download completed => '#{apk_name}'"
+
+task = tasks_file.get_task
+until task.nil?
+  if task.todo?
+    res = task.download
+    tasks_file.complete_task if res
   end
-# Todo: record failed apk  
-rescue => e
-  puts "download '#{apk_name}' failed, error: #{e.message}"
+  task = tasks_file.get_task
 end

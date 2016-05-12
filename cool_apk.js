@@ -1,6 +1,6 @@
 /*
  * Usage:
- *   casperjs test.js
+ *   casperjs cool_apk.js
  *
  * @output String
  *   download url && apk file name, delimited by '|'
