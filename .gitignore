@@ -3,3 +3,4 @@
 *.apk
 .idea/
 /cool_apks.txt
+/.byebug_history

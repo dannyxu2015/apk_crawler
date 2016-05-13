@@ -77,40 +77,24 @@ module Crawl
     class TaskFile < File
       APKS_FILE = 'cool_apks.txt'
 
-      def initialize(access_str)
-        @f   = ::File.open(APKS_FILE, access_str)
+      def initialize(*v)
+        super *v.unshift(APKS_FILE)
         @pos = 0
       end
 
-      def rewind
-        @f.rewind
-      end
-
-      def puts(line)
-        @f.puts Task.new(line).to_s
-      end
-
-      def close
-        @f.close
-      end
-
-      def gets
-        @f.gets
-      end
-
-      def each(&block)
-        @f.each { |l| block.call l }
+      def add_task(line)
+        puts Task.new(line).to_s
       end
 
       def get_task
-        @pos  = @f.pos
-        @task = Task.new @f.gets&.chomp
+        @pos  = pos
+        @task = Task.new gets&.chomp
       end
 
       def complete_task
-        @f.seek @pos
+        seek @pos
         @task.complete
-        @f.puts @task.to_s
+        puts @task.to_s
       end
     end
   end

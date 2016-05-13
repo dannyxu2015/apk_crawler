@@ -120,7 +120,7 @@ sheet.row(0).concat columns
 
 ret.each_with_index do |r, index|
   r.each_pair { |_, v| sheet.row(index + 2).push(v) }
-  task_file.puts r[:url]
+  task_file.add_task r[:url]
 end
 fn = "coolapk_#{Time.now.strftime('%F-%T')}.csv"
 book.write(fn)
