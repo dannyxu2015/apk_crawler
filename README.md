@@ -1,8 +1,10 @@
 ## Environment
 
-ruby v2.3.0
+* ruby v2.3.0
+* [CasperJS v1.1](http://docs.casperjs.org/en/latest/installation.html)
+* PhantomJS
 
-**gems:**
+**ruby gems:**
 
 * mechanize
 * nokogiri
