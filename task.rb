@@ -49,7 +49,7 @@ module Crawl
         @easy.url = url
         warn "downloading #{file_name} ..."
         begin
-          File.open(apk_name, 'wb') do |f|
+          File.open(file_name, 'wb') do |f|
             percent = 0.0
             count   = 0
             @easy.on_progress do |dl_total, dl_now, ul_total, ul_now|
