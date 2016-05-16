@@ -87,7 +87,7 @@ module Crawl
               err_pageno += 1
               next
             end
-            return result if result.size > 5
+            # return result if result.size > 5
           end
           next_page = (page / '//ul[@class="pagination"]/li/a/@href')[-2]&.value
           break if next_page.nil? || next_page =~ /###/
